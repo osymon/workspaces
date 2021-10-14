@@ -1,4 +1,7 @@
-tested on
-centos 7
-debian 9.6
-ubuntu 18.04
+tested on:\n
+centos 7\n
+debian 9.6\n
+ubuntu 18.04\n
+\n
+Used\n
+ansible-playbook -i hosts docker.yml -v\n
