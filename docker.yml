@@ -1,0 +1,10 @@
+---
+- name: Manage docker
+  hosts: all
+  user: root
+
+  roles:
+  - install_docker
+  - install_docker_compose
+  - pull_images
+  - deploy_images
