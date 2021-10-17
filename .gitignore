@@ -1,4 +1,4 @@
 .git
-.ftpconfig
-docker/logs/*
 .idea
+.ftpconfig
+ansible/docker/logs/*
