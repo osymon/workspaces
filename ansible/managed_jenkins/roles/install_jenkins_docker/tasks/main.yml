@@ -1,0 +1,11 @@
+---
+- name:  run docker container
+  docker_container:
+    name: "jenkins-server"
+    image: "jenkins/jenkins"
+    state: present
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - "/opt/jenkins:/var/jenkins_home"
