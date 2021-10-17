@@ -1,8 +1,8 @@
 ---
-- name: Update system
+- name:  Update system
   apt: name=* state=latest update_cache=yes force_apt_get=yes
 
-- name: Install packages for apt add repository over HTTPS
+- name:  Install packages for apt add repository over HTTPS
   apt: name={{ packagesdep }} state=present update_cache=yes force_apt_get=yes
   vars:
     packagesdep:
@@ -15,25 +15,25 @@
       - python-pip
       - python-setuptools
 
-- name: Add Apt signing key from official docker repo
+- name:  Add Apt signing key from official docker repo
   apt_key:
     url:  https://download.docker.com/linux/{{ansible_distribution|lower}}/gpg
     state: present
 
-- name: Get DEB architecture
+- name:  Get DEB architecture
   shell: dpkg --print-architecture
   register: os_architecture
 
-- name: add docker official repository for {{ansible_distribution|lower}}
+- name:  add docker official repository for {{ansible_distribution|lower}}
   apt_repository:
     repo: deb [arch={{ os_architecture.stdout }}] https://download.docker.com/linux/{{ansible_distribution|lower}} {{ ansible_lsb.codename }} stable
     state: present
     filename: docker
 
-- name: Index new repo into the cache
+- name:  Index new repo into the cache
   apt: name=* state=latest update_cache=yes force_apt_get=yes
 
-- name: install packages
+- name:   install packages
   apt: name={{ packages }} state=present update_cache=yes force_apt_get=yes
   vars:
     packages:
@@ -41,35 +41,3 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
-
-
-- name: Start docker service
-  service:
-    name: docker
-    state: started
-    enabled: yes
-
-- name: Upgrade to pip-20.3.4 module for Python
-  pip:
-    name:  pip < 21.0
-    executable: pip2
-    extra_args: --upgrade
-    state: forcereinstall
-
-- name: Install docker module for Python
-  pip:
-    name: docker < 5
-    executable: pip2
-    extra_args: --ignore-installed
-    state: forcereinstall
-
-- name: pull test docker image
-  docker_image:
-    name: hello-world
-    source: pull
-
-- name: run test docker container
-  docker_container:
-    name: hello-world
-    image: hello-world
-    state: started

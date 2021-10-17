@@ -6,3 +6,41 @@
 - name: Install for Debian & Ubuntu
   include: debian.yml
   when: ansible_os_family == "Debian"
+
+
+- name:  Start docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name:  Upgrade to pip-20.3.4 module for Python
+  pip:
+    name:  pip < 21.0
+    executable: pip2
+    extra_args: --upgrade
+    state: forcereinstall
+
+- name:  Remove docker-py module for Python
+  pip:
+    name: docker-py
+    executable: pip2
+    state: absent
+
+- name:  Install docker module for Python
+  pip:
+    name: docker < 5
+    executable: pip2
+    extra_args: --ignore-installed
+    state: forcereinstall
+
+- name:  pull test docker image
+  docker_image:
+    name: hello-world
+    source: pull
+
+- name:  run test docker container
+  docker_container:
+    name: hello-world
+    image: hello-world
+    state: started

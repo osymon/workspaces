@@ -1,5 +1,5 @@
 ---
-- name: Docker compose install
+- name:  Docker compose install
   get_url:
       url: https://github.com/docker/compose/releases/download/1.22.0/docker-compose-{{ ansible_system }}-{{ ansible_userspace_architecture }}
       dest: /usr/local/bin/docker-compose
