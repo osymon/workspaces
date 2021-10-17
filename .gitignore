@@ -2,3 +2,4 @@
 .idea
 .ftpconfig
 ansible/*/logs/*
+ansible/*/hosts.yml

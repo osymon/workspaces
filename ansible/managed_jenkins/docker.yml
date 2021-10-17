@@ -1,0 +1,8 @@
+---
+- name: Manage jenkins
+  hosts: all
+
+  roles:
+  - install_jenkins_docker
+  - base_setting
+  - add_jobs

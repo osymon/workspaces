@@ -4,4 +4,4 @@ debian 9.6 <br>
 ubuntu 18.04 <br>
  <br>
 Used <br>
-ansible-playbook -i hosts jenkins.yml -v <br>
+ansible-playbook jenkins.yml -v <br>
