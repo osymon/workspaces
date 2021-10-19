@@ -3,3 +3,5 @@
 .ftpconfig
 ansible/*/logs/*
 ansible/*/hosts.yml
+.gitignore
+ansible/hosts.yml

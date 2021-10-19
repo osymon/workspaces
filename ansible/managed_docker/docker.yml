@@ -11,7 +11,7 @@
       - { name_image: jenkins/jenkins, name_container: oh-jenkins-jenkins }
 
   roles:
-  - install_docker
-  - install_docker_compose
-  - pull_images
-  - deploy_images
+    - install_docker
+    - install_docker_compose
+    - pull_images
+    - deploy_images
